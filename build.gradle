@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'groovy'
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 sourceCompatibility = 1.8
@@ -24,14 +25,26 @@ repositories {
 jar {
     baseName = 'pzpwr_core'
     version = null
+    manifest {
+        attributes 'Main-Class': 'com.nokia.nakinastub.Application'
+    }
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    testCompile("junit:junit")
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.3'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.3'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.springframework.boot:spring-boot-starter-ws'
+    compile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+    compile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    compile 'org.springframework.security:spring-security-web:4.0.2.RELEASE'
+    compile 'org.springframework.security:spring-security-config:4.0.2.RELEASE'
+    compile 'commons-codec:commons-codec:1.9'
+    testRuntime 'cglib:cglib-nodep:3.1'
+    testRuntime 'org.objenesis:objenesis:2.1'
+    testCompile 'org.springframework.boot:spring-boot-starter-ws'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 task wrapper(type: Wrapper) {
