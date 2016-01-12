@@ -76,7 +76,7 @@ public class Person extends Type {
 //    }
 
     @Override
-    public Type clone() {
+    public Person clone() {
         Person clone = new Person();
         clone.setLogin(this.login);
         clone.setPassword(this.password);
