@@ -1,5 +1,7 @@
 package type;
 
+import java.util.List;
+
 public class Person extends Type {
 
     private String login;
@@ -9,7 +11,7 @@ public class Person extends Type {
     private String job;
     private String rights;
     private int risk;
-//    private List<Visit> medicalDocumentation;
+    private List<Visit> medicalDocumentation;
 
     public String getLogin() {
         return login;
@@ -39,9 +41,9 @@ public class Person extends Type {
         return risk;
     }
 
-//    public List<Visit> getMedicalDocumentation() {
-//        return medicalDocumentation;
-//    }
+    public List<Visit> getMedicalDocumentation() {
+        return medicalDocumentation;
+    }
 
     public void setLogin(String login) {
         this.login = login;
@@ -71,9 +73,9 @@ public class Person extends Type {
         this.risk = risk;
     }
 
-//    public void setMedicalDocumentation(List<Visit> medicalDocumentation) {
-//        this.medicalDocumentation = medicalDocumentation;
-//    }
+    public void setMedicalDocumentation(List<Visit> medicalDocumentation) {
+        this.medicalDocumentation = medicalDocumentation;
+    }
 
     @Override
     public Person clone() {
@@ -85,7 +87,7 @@ public class Person extends Type {
         clone.setJob(this.job);
         clone.setRights(this.rights);
         clone.setRisk(this.risk);
-//        clone.setMedicalDocumentation(this.medicalDocumentation);
+        clone.setMedicalDocumentation(this.medicalDocumentation);
         return clone;
     }
 }

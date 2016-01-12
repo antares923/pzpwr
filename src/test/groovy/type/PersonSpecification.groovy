@@ -16,7 +16,7 @@ class PersonSpecification extends Specification {
         uut.setJob(JOB)
         uut.setRights(RIGHTS)
         uut.setRisk(RISK)
-//        uut.setMedicalDocumentation(MEDICAL_DOCUMENTATION)
+        uut.setMedicalDocumentation(MEDICAL_DOCUMENTATION)
     }
 
     def "When setting new values then every field set correctly"() {
@@ -28,7 +28,7 @@ class PersonSpecification extends Specification {
         uut.getJob() == JOB
         uut.getRights() == RIGHTS
         uut.getRisk() == RISK
-//        uut.getMedicalDocumentation() ==  MEDICAL_DOCUMENTATION
+        uut.getMedicalDocumentation() == MEDICAL_DOCUMENTATION
     }
 
     def "When clone called then object with correct fields returned"() {
@@ -43,6 +43,6 @@ class PersonSpecification extends Specification {
         clone.getJob() == uut.getJob()
         clone.getRights() == uut.getRights()
         clone.getRisk() == uut.getRisk()
-//        clone.getMedicalDocumentation() ==  uut.getMedicalDocumentation()
+        clone.getMedicalDocumentation() == uut.getMedicalDocumentation()
     }
 }
