@@ -1,7 +1,6 @@
 package storage;
 
 import exception.StorageException;
-import observator.Observable;
 import org.apache.log4j.Logger;
 import type.Type;
 
@@ -12,51 +11,47 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public abstract class BaseStorage<OBJECT_TYPE extends Type> extends Observable {
+public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
 
     private Logger logger = Logger.getLogger("BaseStorage");
-    protected Map<Integer, OBJECT_TYPE> map = new ConcurrentSkipListMap<>();
+    protected Map<KEY_TYPE, OBJECT_TYPE> map = new ConcurrentSkipListMap<>();
 
-    protected void add(int id, OBJECT_TYPE t) throws StorageException {
+    protected void add(KEY_TYPE id, OBJECT_TYPE t) throws StorageException {
         logger.debug("add(id: " + id + ", object: " + t + ") called");
         if (!isIdValid(id)) {
             throw new StorageException("Unable to add object (" + id + ") to storage");
         }
         map.put(id, t);
-        notifyAdd(id);
         logger.debug("add() executed");
     }
 
-    public void remove(int id) throws StorageException {
+    protected void remove(KEY_TYPE id) throws StorageException {
         logger.debug("remove(id: " + id + ") called");
         if (!removeImpl(id)) {
             throw new StorageException("Unable to remove object (" + id + ") from storage");
         }
-        notifyRemove(id);
-
         logger.debug("remove() executed");
     }
 
-    private boolean removeImpl(int id) {
+    private boolean removeImpl(KEY_TYPE id) {
         return map.remove(id) != null;
     }
 
-    protected void update(int id, OBJECT_TYPE t) throws StorageException {
+    protected void update(KEY_TYPE id, OBJECT_TYPE t) throws StorageException {
         logger.debug("update(id: " + id + ", object: " + t + ") called");
         if (!updateImpl(id, t)) {
             throw new StorageException("Unable to update object (" + id + ") in storage");
         }
         map.put(id, t);
-        notifyUpdate(id);
         logger.debug("update() executed");
     }
 
-    private boolean updateImpl(int id, OBJECT_TYPE t) {
+    private boolean updateImpl(KEY_TYPE id, OBJECT_TYPE t) {
         return map.get(id) != null;
     }
 
     @SuppressWarnings("unchecked")
-    public OBJECT_TYPE get(int id) throws StorageException {
+    public OBJECT_TYPE get(KEY_TYPE id) throws StorageException {
         logger.debug("get(id: " + id + ") called");
         OBJECT_TYPE object = (isIdValid(id) ? map.get(id) : null);
 
@@ -87,7 +82,7 @@ public abstract class BaseStorage<OBJECT_TYPE extends Type> extends Observable {
         map.clear();
     }
 
-    protected boolean isIdValid(int id) {
-        return map.get(id) == null;
+    protected boolean isIdValid(KEY_TYPE id) {
+        return id != null && map.get(id) == null;
     }
 }

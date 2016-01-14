@@ -1,5 +1,7 @@
 package type;
 
+import visitenum.JobEnum;
+
 import java.util.List;
 
 public class Person extends Type {
@@ -8,9 +10,8 @@ public class Person extends Type {
     private String password;
     private String name;
     private String surname;
-    private String job;
+    private JobEnum job;
     private String rights;
-    private int risk;
     private List<Visit> medicalDocumentation;
 
     public String getLogin() {
@@ -29,16 +30,12 @@ public class Person extends Type {
         return surname;
     }
 
-    public String getJob() {
+    public JobEnum getJob() {
         return job;
     }
 
     public String getRights() {
         return rights;
-    }
-
-    public int getRisk() {
-        return risk;
     }
 
     public List<Visit> getMedicalDocumentation() {
@@ -61,16 +58,12 @@ public class Person extends Type {
         this.surname = surname;
     }
 
-    public void setJob(String job) {
+    public void setJob(JobEnum job) {
         this.job = job;
     }
 
     public void setRights(String rights) {
         this.rights = rights;
-    }
-
-    public void setRisk(int risk) {
-        this.risk = risk;
     }
 
     public void setMedicalDocumentation(List<Visit> medicalDocumentation) {
@@ -86,7 +79,6 @@ public class Person extends Type {
         clone.setSurname(this.surname);
         clone.setJob(this.job);
         clone.setRights(this.rights);
-        clone.setRisk(this.risk);
         clone.setMedicalDocumentation(this.medicalDocumentation);
         return clone;
     }

@@ -15,7 +15,6 @@ class PersonSpecification extends Specification {
         uut.setSurname(SURNAME)
         uut.setJob(JOB)
         uut.setRights(RIGHTS)
-        uut.setRisk(RISK)
         uut.setMedicalDocumentation(MEDICAL_DOCUMENTATION)
     }
 
@@ -27,7 +26,6 @@ class PersonSpecification extends Specification {
         uut.getSurname() == SURNAME
         uut.getJob() == JOB
         uut.getRights() == RIGHTS
-        uut.getRisk() == RISK
         uut.getMedicalDocumentation() == MEDICAL_DOCUMENTATION
     }
 
@@ -42,7 +40,6 @@ class PersonSpecification extends Specification {
         clone.getSurname() == uut.getSurname()
         clone.getJob() == uut.getJob()
         clone.getRights() == uut.getRights()
-        clone.getRisk() == uut.getRisk()
         clone.getMedicalDocumentation() == uut.getMedicalDocumentation()
     }
 }
