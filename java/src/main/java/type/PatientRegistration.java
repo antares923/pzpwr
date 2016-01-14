@@ -1,6 +1,6 @@
 package type;
 
-import visitenum.VisitTypeEnum;
+import appenum.VisitTypeEnum;
 
 public class PatientRegistration extends Type {
 

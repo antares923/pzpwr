@@ -1,7 +1,8 @@
 package constants.type
 
+import appenum.JobEnum
+import appenum.RightEnum
 import type.Visit
-import visitenum.JobEnum
 
 class PersonConstants {
 
@@ -12,7 +13,6 @@ class PersonConstants {
     static final NAME = 'name'
     static final SURNAME = 'surname'
     static final JOB = JobEnum.ADMIN
-    static final RIGHTS = 'rights'
-    static final RISK = 0
+    static final RIGHTS = RightEnum.ADMIN
     static final MEDICAL_DOCUMENTATION = Arrays.asList(VISIT_0)
 }

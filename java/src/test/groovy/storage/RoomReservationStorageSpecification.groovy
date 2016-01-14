@@ -2,7 +2,6 @@ package storage
 
 import static constants.storage.RoomReservationStorageConstants.AVAILABLE_ROOMS
 import static constants.storage.RoomReservationStorageConstants.END_TIME_1
-import static constants.storage.RoomReservationStorageConstants.END_TIME_2
 import static constants.storage.RoomReservationStorageConstants.END_TIME_4
 import static constants.storage.RoomReservationStorageConstants.NO_AVAILABLE_ROOM
 import static constants.storage.RoomReservationStorageConstants.ROOM_NUMBER_1
@@ -11,7 +10,6 @@ import static constants.storage.RoomReservationStorageConstants.ROOM_RESERVATION
 import static constants.storage.RoomReservationStorageConstants.ROOM_RESERVATION_IN_TIME_0
 import static constants.storage.RoomReservationStorageConstants.ROOM_RESERVATION_WITH_DIFFERENT_ROOM_ID_1
 import static constants.storage.RoomReservationStorageConstants.START_TIME_1
-import static constants.storage.RoomReservationStorageConstants.START_TIME_2
 import static constants.storage.RoomReservationStorageConstants.START_TIME_4
 
 import exception.StorageException
@@ -23,7 +21,7 @@ class RoomReservationStorageSpecification extends Specification {
     def uut = new RoomReservationStorageImpl()
 
     def setup() {
-        uut.availableRoomNumbers = AVAILABLE_ROOMS
+        uut.setAvailableRoomNumbers(AVAILABLE_ROOMS)
     }
 
     def "When adding new RoomReservation then reservation added correctly"() {

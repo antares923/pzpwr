@@ -3,7 +3,7 @@ package storage;
 import exception.StorageException;
 import org.apache.log4j.Logger;
 import type.Person;
-import visitenum.JobEnum;
+import appenum.JobEnum;
 
 import java.util.List;
 

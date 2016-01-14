@@ -1,4 +1,4 @@
-package visitenum;
+package appenum;
 
 public enum VisitTypeEnum {
 

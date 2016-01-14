@@ -1,6 +1,7 @@
 package type;
 
-import visitenum.JobEnum;
+import appenum.JobEnum;
+import appenum.RightEnum;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Person extends Type {
     private String name;
     private String surname;
     private JobEnum job;
-    private String rights;
+    private RightEnum rights;
     private List<Visit> medicalDocumentation;
 
     public String getLogin() {
@@ -34,7 +35,7 @@ public class Person extends Type {
         return job;
     }
 
-    public String getRights() {
+    public RightEnum getRights() {
         return rights;
     }
 
@@ -62,7 +63,7 @@ public class Person extends Type {
         this.job = job;
     }
 
-    public void setRights(String rights) {
+    public void setRights(RightEnum rights) {
         this.rights = rights;
     }
 

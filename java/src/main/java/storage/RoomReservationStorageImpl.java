@@ -73,7 +73,7 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
             if ((startTime.isAfter(roomReservation.getReservationStartTime()) && startTime.isBefore(roomReservation.getReservationEndTime()) ||
                     startTime.isEqual(roomReservation.getReservationStartTime())) ||
                     (endTime.isAfter(roomReservation.getReservationStartTime()) && endTime.isBefore(roomReservation.getReservationEndTime())) ||
-                             endTime.isEqual(roomReservation.getReservationEndTime())) {
+                    endTime.isEqual(roomReservation.getReservationEndTime())) {
                 logger.debug("checkRoomAvailability() returned false - room reserved");
                 logger.debug("Room reservation times: ");
                 logger.debug("  " + roomReservation.getReservationStartTime());
@@ -83,5 +83,9 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
         }
         logger.debug("checkRoomAvailability() returned true - no reservation");
         return true;
+    }
+
+    public void setAvailableRoomNumbers(List<Integer> availableRoomNumbers) {
+        this.availableRoomNumbers = availableRoomNumbers;
     }
 }

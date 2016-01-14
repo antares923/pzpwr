@@ -1,7 +1,7 @@
 package constants.type
 
 import converter.TimeConverter
-import visitenum.VisitTypeEnum
+import appenum.VisitTypeEnum
 
 class VisitConstants {
 

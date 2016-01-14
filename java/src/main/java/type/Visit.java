@@ -1,7 +1,7 @@
 package type;
 
 import converter.TimeConverter;
-import visitenum.VisitTypeEnum;
+import appenum.VisitTypeEnum;
 
 import java.time.LocalDateTime;
 import java.util.List;

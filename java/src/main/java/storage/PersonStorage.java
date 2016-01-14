@@ -2,7 +2,7 @@ package storage;
 
 import exception.StorageException;
 import type.Person;
-import visitenum.JobEnum;
+import appenum.JobEnum;
 
 import java.util.List;
 
