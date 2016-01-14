@@ -1,6 +1,0 @@
-package appenum;
-
-public enum JobEnum {
-
-    PATIENT, NEUROLOG, LARINGOLOG, PEDIATRIST, INTERNIST, ADMIN, RECEPTIONIST;
-}

@@ -26,7 +26,7 @@ jar {
     baseName = 'pzpwr_core'
     version = null
     manifest {
-        attributes 'Main-Class': 'com.nokia.nakinastub.Application'
+        attributes 'Main-Class': 'com.pzpwr.core.Application'
     }
 }
 

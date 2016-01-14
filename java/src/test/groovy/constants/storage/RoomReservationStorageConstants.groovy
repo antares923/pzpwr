@@ -1,6 +1,6 @@
 package constants.storage
 
-import type.RoomReservation
+import com.pzpwr.core.type.RoomReservation
 
 import java.time.LocalDateTime
 

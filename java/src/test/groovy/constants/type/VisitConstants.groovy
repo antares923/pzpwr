@@ -1,7 +1,7 @@
 package constants.type
 
-import converter.TimeConverter
-import appenum.VisitTypeEnum
+import com.pzpwr.core.converter.TimeConverter
+import com.pzpwr.core.appenum.VisitTypeEnum
 
 class VisitConstants {
 

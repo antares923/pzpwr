@@ -1,8 +1,8 @@
 package constants.type
 
-import appenum.JobEnum
-import appenum.RightEnum
-import type.Visit
+import com.pzpwr.core.appenum.JobEnum
+import com.pzpwr.core.appenum.RightEnum
+import com.pzpwr.core.type.Visit
 
 class PersonConstants {
 
