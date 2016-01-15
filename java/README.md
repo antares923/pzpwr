@@ -12,7 +12,7 @@ odpowiedź:
 
 	lista obiektów typu Visit w formacie JSON - cała dokumentacja medyczna dla jednej osoby (pacjenta, lekarza, etc)
 	
-	kod 500, wiadomość: "Uzytkownik o podanym id %id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
+	kod 500, wiadomość: "Uzytkownik o podanym id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
 	
 
 	
@@ -30,13 +30,13 @@ odpowiedź:
 
 	lista obiektów typu Visit w formacie JSON - zaplanowane przyszłe wizyty dla danej osoby
 	
-	kod 500, wiadomość: "Uzytkownik o podanym id %id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
+	kod 500, wiadomość: "Uzytkownik o podanym id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
 	
 
 	
 #Pobieranie kalendarza wszystkich wizyt
 
-url: http://localhost:8080/calendar/employee/get
+url: http://localhost:8080/calendar/get
 
 metoda: GET
 
@@ -46,11 +46,12 @@ odpowiedź:
 
 	lista obiektów typu Visit w formacie JSON - cała siatka wizyt, którą uprawniona do tego osoba może dowolnie zmieniać
 	
+	kod 500, wiadomość: "Blad przy dodawaniu nowego kalendarza. Przywrocono stara wersje" - gdy nowy kalendarz wizyt jest nieprawidlowy
 	
 	
 #Ustawienie kalendarza wizyt
 
-url: http://localhost:8080/calendar/employee/set
+url: http://localhost:8080/calendar/set
 
 metoda: POST
 
@@ -81,8 +82,40 @@ parametry:
 odpowiedź:
 
 	kod 200
+
 	
+
+#Akceptacja rejestracji
+
+url: http://localhost:8080/reception/patient_acceptation
+
+metoda: POST
+
+MIME: application/json
+
+parametry:
 	
+	lista obiektów typu PatientRegistration w formacie JSON - zaakceptowani pacjenci
+
+odpowiedź:
+
+	kod 200
+
+
+
+#Pobranie oczekujących użytkowników
+
+url: http://localhost:8080/reception/get_waiting_patients
+
+metoda: GET
+
+parametry:
+
+odpowiedź:
+
+	lista obiektów typu PatientQuery w formacie JSON - lista zarejestrowanych pacjentów
+	
+
 
 #Dodanie użytkownika
 
@@ -99,6 +132,8 @@ parametry:
 odpowiedź:
 
 	kod 200
+
+	kod 500 - wiadomość: "Uzytkownik o podanym id juz istnieje"
 	
 	
 	
@@ -118,7 +153,7 @@ odpowiedź:
 
 	kod 200
 	
-	kod 500, wiadomość: "Uzytkownik o podanym id %id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
+	kod 500, wiadomość: "Uzytkownik o podanym id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
 	
 	
 ...

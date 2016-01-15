@@ -1,8 +1,9 @@
 package com.pzpwr.core.storage;
 
+import com.pzpwr.core.appenum.JobEnum;
+import com.pzpwr.core.appenum.RightEnum;
 import com.pzpwr.core.exception.StorageException;
 import com.pzpwr.core.type.Person;
-import com.pzpwr.core.appenum.JobEnum;
 
 import java.util.List;
 
@@ -14,9 +15,13 @@ public interface PersonStorage {
 
     void update(String personLogin, Person newPersonData) throws StorageException;
 
+    Person get(String personLogin) throws StorageException;
+
     List<Person> filterByJob(JobEnum job);
 
-    List<Person> filterByRights(String right);
+    List<Person> filterByRights(RightEnum right);
 
     List<Person> filterBySurname(String surname);
+
+    List<Person> getAllObjects();
 }

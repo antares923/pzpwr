@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface PatientRegistrationStorage {
 
-    void add(PatientRegistration registration) throws StorageException;
+    void add(List<PatientRegistration> registration) throws StorageException;
 
     void remove(int patientId) throws StorageException;
+
+    PatientRegistration get(int patientId) throws StorageException;
 
     List<PatientRegistration> getAllObjects();
 }

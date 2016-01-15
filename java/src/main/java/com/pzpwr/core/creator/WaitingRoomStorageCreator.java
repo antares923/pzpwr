@@ -15,6 +15,7 @@ public class WaitingRoomStorageCreator {
     public WaitingRoomStorage createWaitingRoomStorage() {
         logger.debug("createWaitingRoomStorage() called");
         WaitingRoomStorage waitingRoomStorage = new WaitingRoomStorageImpl();
+        logger.info("Waiting room storage created");
         logger.debug("createWaitingRoomStorage() returned " + waitingRoomStorage);
         return waitingRoomStorage;
     }

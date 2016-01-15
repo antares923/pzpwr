@@ -2,8 +2,8 @@ package com.pzpwr.core.storage;
 
 import com.pzpwr.core.exception.NoFreeRoomException;
 import com.pzpwr.core.exception.StorageException;
-import org.apache.log4j.Logger;
 import com.pzpwr.core.type.RoomReservation;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +27,8 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
         }
         if (!checkRoomAvailability(roomReservation.getRoomNumber(), roomReservation.getReservationStartTime(),
                 roomReservation.getReservationEndTime())) {
-            throw new StorageException("Cannot add reservation on this date. Room is already reserved");
+            throw new StorageException(String.valueOf(roomReservation.getRoomNumber()),
+                    "Cannot add reservation on this date. Room is already reserved");
         }
         roomReservationList.add(roomReservation);
         logger.debug("add() executed");
@@ -37,9 +38,21 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
     public void release(RoomReservation roomReservation) throws StorageException {
         List<RoomReservation> roomReservationList = map.get(roomReservation.getRoomNumber());
         if (roomReservationList == null) {
-            throw new StorageException("There is no reservation " + roomReservation);
+            throw new StorageException(String.valueOf(roomReservation.getRoomNumber()),
+                    "There is no reservation " + roomReservation);
         }
         roomReservationList.remove(roomReservation);
+    }
+
+    @Override
+    public List<RoomReservation> get(int roomNumber) throws StorageException {
+        logger.debug("get(roomNumber: " + roomNumber + ") called");
+        List<RoomReservation> roomReservationList = map.get(roomNumber);
+        if (roomReservationList == null) {
+            throw new StorageException(String.valueOf(roomNumber),
+                    "Object (" + roomNumber + ") not found in storage");
+        }
+        return null;
     }
 
     @Override

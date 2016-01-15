@@ -1,9 +1,10 @@
 package com.pzpwr.core.storage;
 
-import com.pzpwr.core.exception.StorageException;
-import org.apache.log4j.Logger;
-import com.pzpwr.core.type.Person;
 import com.pzpwr.core.appenum.JobEnum;
+import com.pzpwr.core.appenum.RightEnum;
+import com.pzpwr.core.exception.StorageException;
+import com.pzpwr.core.type.Person;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class PersonStorageImpl extends BaseStorage<String, Person> implements Pe
 
     @Override
     public void add(Person person) throws StorageException {
+        person.setId(map.size());
         super.add(person.getLogin(), person);
     }
 
@@ -33,7 +35,7 @@ public class PersonStorageImpl extends BaseStorage<String, Person> implements Pe
         return persons;
     }
 
-    public List<Person> filterByRights(String right) {
+    public List<Person> filterByRights(RightEnum right) {
         logger.debug("filterByJob(right: " + right + ") called");
         List<Person> persons = getListByFilter((person) -> person.getRights().equals(right));
         logger.debug("filterByJob() returned " + persons);

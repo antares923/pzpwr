@@ -3,17 +3,24 @@ package com.pzpwr.core.type;
 import com.pzpwr.core.appenum.JobEnum;
 import com.pzpwr.core.appenum.RightEnum;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Person extends Type {
 
+    private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
     private JobEnum job;
     private RightEnum rights;
-    private List<Visit> medicalDocumentation;
+    private List<Visit> medicalDocumentation = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
 
     public String getLogin() {
         return login;
@@ -43,6 +50,10 @@ public class Person extends Type {
         return medicalDocumentation;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setLogin(String login) {
         this.login = login;
     }
@@ -68,7 +79,26 @@ public class Person extends Type {
     }
 
     public void setMedicalDocumentation(List<Visit> medicalDocumentation) {
-        this.medicalDocumentation = medicalDocumentation;
+        if (medicalDocumentation != null) {
+            this.medicalDocumentation = medicalDocumentation;
+        }
+    }
+
+    public void addVisitToDocumentation(Visit visit) {
+        this.medicalDocumentation.add(visit);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Person other = (Person) o;
+        return o != null &&
+                Objects.equals(this.getLogin(), other.getLogin()) &&
+                Objects.equals(this.getPassword(), other.getPassword()) &&
+                Objects.equals(this.getName(), other.getName()) &&
+                Objects.equals(this.getSurname(), other.getSurname()) &&
+                Objects.equals(this.getJob(), other.getJob()) &&
+                Objects.equals(this.getRights(), other.getRights()) &&
+                this.getMedicalDocumentation().containsAll(other.getMedicalDocumentation());
     }
 
     @Override
@@ -82,5 +112,15 @@ public class Person extends Type {
         clone.setRights(this.rights);
         clone.setMedicalDocumentation(this.medicalDocumentation);
         return clone;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname + "(" + login + "); job: " + job + ", rights: " + rights;
+    }
+
+    @Override
+    public int hashCode() {
+        return login.hashCode();
     }
 }

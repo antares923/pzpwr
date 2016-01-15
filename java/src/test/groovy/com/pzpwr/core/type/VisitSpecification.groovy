@@ -17,7 +17,7 @@ class VisitSpecification extends Specification {
         uut.setRoomNumber(ROOM_NUMBER)
         uut.setDoctorIdList(DOCTOR_IDS_LIST)
         uut.setDateTime(DATE_TIME)
-        uut.setPatientId(PATIENT_ID)
+        uut.setPatientLogin(PATIENT_LOGIN)
         uut.setType(TYPE)
     }
 
@@ -27,7 +27,7 @@ class VisitSpecification extends Specification {
         uut.getRoomNumber() == ROOM_NUMBER
         uut.getDoctorIdList() == DOCTOR_IDS_LIST
         uut.getDateTime() == DATE_TIME
-        uut.getPatientId() == PATIENT_ID
+        uut.getPatientLogin() == PATIENT_LOGIN
         uut.getType() == TYPE
     }
 
@@ -39,7 +39,7 @@ class VisitSpecification extends Specification {
         clone.getRoomNumber() == uut.getRoomNumber()
         clone.getDoctorIdList().containsAll(uut.getDoctorIdList())
         clone.getDateTime() == uut.getDateTime()
-        clone.getPatientId() == uut.getPatientId()
+        clone.getPatientLogin() == uut.getPatientLogin()
         clone.getType() == uut.getType()
     }
 }

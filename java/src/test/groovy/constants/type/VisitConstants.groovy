@@ -13,6 +13,6 @@ class VisitConstants {
     static final ROOM_NUMBER = 1
     static final DOCTOR_IDS_LIST = Arrays.asList(DOCTOR_ID_0, DOCTOR_ID_1)
     static final DATE_TIME = TimeConverter.convertToLocalDateTime(DATE_0);
-    static final PATIENT_ID = 2
+    static final PATIENT_LOGIN = 'patientLogin'
     static final TYPE = VisitTypeEnum.TO_INTERNIST
 }

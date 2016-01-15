@@ -34,6 +34,7 @@ public class PersonStorageCreator {
         } catch (StorageException e) {
             logger.warn("Problems with adding admin account");
         }
+        logger.info("Person storage created");
         logger.debug("createPersonStorage() returned " + personStorage);
         return personStorage;
     }

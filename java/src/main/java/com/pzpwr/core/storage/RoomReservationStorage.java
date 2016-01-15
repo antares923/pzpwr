@@ -13,6 +13,8 @@ public interface RoomReservationStorage {
 
     void release(RoomReservation roomReservation) throws StorageException;
 
+    List<RoomReservation> get(int roomNumber) throws StorageException;
+
     void setAvailableRoomNumbers(List<Integer> availableRoomNumbers);
 
     int getFreeRoomAtTime(LocalDateTime startTime, LocalDateTime endTime) throws NoFreeRoomException;

@@ -1,8 +1,9 @@
 package com.pzpwr.core.storage;
 
 import com.pzpwr.core.exception.StorageException;
-import org.apache.log4j.Logger;
+import com.pzpwr.core.observator.Observable;
 import com.pzpwr.core.type.Type;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
+public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> extends Observable<KEY_TYPE> {
 
     private Logger logger = Logger.getLogger("BaseStorage");
     protected Map<KEY_TYPE, OBJECT_TYPE> map = new ConcurrentSkipListMap<>();
@@ -19,7 +20,7 @@ public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
     protected void add(KEY_TYPE id, OBJECT_TYPE t) throws StorageException {
         logger.debug("add(id: " + id + ", object: " + t + ") called");
         if (!isIdValid(id)) {
-            throw new StorageException("Unable to add object (" + id + ") to com.pzpwr.core.storage");
+            throw new StorageException(id.toString(), "Unable to add object (" + id + ") to storage");
         }
         map.put(id, t);
         logger.debug("add() executed");
@@ -28,7 +29,7 @@ public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
     protected void remove(KEY_TYPE id) throws StorageException {
         logger.debug("remove(id: " + id + ") called");
         if (!removeImpl(id)) {
-            throw new StorageException("Unable to remove object (" + id + ") from com.pzpwr.core.storage");
+            throw new StorageException(id.toString(), "Unable to remove object (" + id + ") from storage");
         }
         logger.debug("remove() executed");
     }
@@ -40,7 +41,7 @@ public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
     protected void update(KEY_TYPE id, OBJECT_TYPE t) throws StorageException {
         logger.debug("update(id: " + id + ", object: " + t + ") called");
         if (!updateImpl(id, t)) {
-            throw new StorageException("Unable to update object (" + id + ") in com.pzpwr.core.storage");
+            throw new StorageException(id.toString(), "Unable to update object (" + id + ") in storage");
         }
         map.put(id, t);
         logger.debug("update() executed");
@@ -56,7 +57,7 @@ public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> {
         OBJECT_TYPE object = (isIdValid(id) ? map.get(id) : null);
 
         if (object == null) {
-            throw new StorageException("Object (" + id + ") not found in com.pzpwr.core.storage");
+            throw new StorageException(id.toString(), "Object (" + id + ") not found in storage");
         }
         logger.debug("get() returned " + object);
         return (OBJECT_TYPE) object.clone();

@@ -2,10 +2,16 @@ package com.pzpwr.core.exception;
 
 public class StorageException extends Exception {
 
-    String message;
+    private String problematicId;
+    private String message;
 
-    public StorageException(String message) {
+    public StorageException(String problematicId, String message) {
+        this.problematicId = problematicId;
         this.message = message;
+    }
+
+    public String getProblematicId() {
+        return problematicId;
     }
 
     @Override

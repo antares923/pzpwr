@@ -1,19 +1,19 @@
 package com.pzpwr.core.type;
 
-import com.pzpwr.core.converter.TimeConverter;
 import com.pzpwr.core.appenum.VisitTypeEnum;
+import com.pzpwr.core.converter.TimeConverter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Visit {
+public class Visit extends Type {
 
     private int id;
     private int roomNumber;
     private List<Integer> doctorIdList;
     private LocalDateTime dateTime;
     private int durationInMinutes;
-    private int patientId;
+    private String patientLogin;
     private VisitTypeEnum type;
 
     public int getId() {
@@ -36,8 +36,8 @@ public class Visit {
         return durationInMinutes;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public String getPatientLogin() {
+        return patientLogin;
     }
 
     public VisitTypeEnum getType() {
@@ -64,8 +64,8 @@ public class Visit {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatientLogin(String patientLogin) {
+        this.patientLogin = patientLogin;
     }
 
     public void setType(VisitTypeEnum type) {
@@ -79,7 +79,7 @@ public class Visit {
         clone.setRoomNumber(this.getRoomNumber());
         clone.setDoctorIdList(this.getDoctorIdList());
         clone.setDateTime(this.getDateTime());
-        clone.setPatientId(this.getPatientId());
+        clone.setPatientLogin(this.getPatientLogin());
         clone.setType(this.getType());
         return clone;
     }

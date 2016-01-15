@@ -33,7 +33,8 @@ public class VisitTypeToJobConnectionConfigurator {
     @PostConstruct
     public void initialize() {
         Map<VisitTypeEnum, JobEnum> vTJConnectionMap = getVisitToJobConnectionMap();
-        visitTypeToJobConnection.setVisitTypeEnumToJobEnumConnectionMap(getVisitToJobConnectionMap());
+        visitTypeToJobConnection.setVisitTypeEnumToJobEnumConnectionMap(vTJConnectionMap);
+        logger.info("Visit to job connection initialized");
     }
 
     private Map<VisitTypeEnum, JobEnum> getVisitToJobConnectionMap() {

@@ -11,5 +11,7 @@ public interface WaitingRoomStorage {
 
     void remove(PatientQuery patientQuery) throws StorageException;
 
+    PatientQuery get(int patientId) throws StorageException;
+
     List<PatientQuery> getAllObjects();
 }

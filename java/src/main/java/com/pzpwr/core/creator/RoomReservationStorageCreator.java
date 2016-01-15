@@ -30,6 +30,7 @@ public class RoomReservationStorageCreator {
         RoomReservationStorage roomReservationStorage = new RoomReservationStorageImpl();
         List<Integer> availableRoomList = getAvailableRooms();
         roomReservationStorage.setAvailableRoomNumbers(availableRoomList);
+        logger.info("Room reservation storage created");
         return roomReservationStorage;
     }
 
