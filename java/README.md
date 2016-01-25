@@ -156,4 +156,5 @@ odpowiedź:
 	kod 500, wiadomość: "Uzytkownik o podanym id nie istnieje" - gdy nie uda się odnaleźć użytkownika o podanym identyfikatorze
 	
 	
+	
 ...
