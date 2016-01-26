@@ -2,9 +2,9 @@ package com.pzpwr.core.manager;
 
 import com.pzpwr.core.exception.StorageException;
 import com.pzpwr.core.observator.StorageObserver;
-import com.pzpwr.core.storage.PersonStorage;
+import com.pzpwr.core.storage.UserStorage;
 import com.pzpwr.core.storage.VisitStorage;
-import com.pzpwr.core.type.Person;
+import com.pzpwr.core.type.User;
 import com.pzpwr.core.type.Visit;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class VisitStorageManager implements StorageObserver<Integer> {
     private VisitStorage archievedVisitStorage;
 
     @Autowired
-    private PersonStorage personStorage;
+    private UserStorage userStorage;
 
     private Logger logger = Logger.getLogger("VisitStorageManager");
 
@@ -48,8 +48,8 @@ public class VisitStorageManager implements StorageObserver<Integer> {
     public void remove(Integer id) {
         try {
             Visit visit = visitStorage.get(id);
-            Person person = personStorage.get(visit.getPatientLogin());
-            person.addVisitToDocumentation(visit);
+            User user = userStorage.get(visit.getPatientLogin());
+            user.addVisitToDocumentation(visit);
             archievedVisitStorage.add(visit);
         } catch (StorageException e) {
             logger.warn("Encountered problem: " + e.getMessage());

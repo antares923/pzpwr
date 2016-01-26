@@ -2,8 +2,8 @@ package com.pzpwr.core.endpoint;
 
 import com.pzpwr.core.appenum.RightEnum;
 import com.pzpwr.core.exception.StorageException;
-import com.pzpwr.core.storage.PersonStorage;
-import com.pzpwr.core.type.Person;
+import com.pzpwr.core.storage.UserStorage;
+import com.pzpwr.core.type.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ChangeRightsEndpoint {
 
     @Autowired
-    private PersonStorage personStorage;
+    private UserStorage userStorage;
 
     private Logger logger = Logger.getLogger("ChangeRightsEndpoint");
 
@@ -32,9 +32,9 @@ public class ChangeRightsEndpoint {
             throws StorageException {
         logger.debug("changeRights(login: " + login + ", right: " + right + ") called");
         logger.info("Trying to change rights of user (" + login + ") to " + right);
-        Person person = personStorage.get(login);
-        person.setRights(right);
-        personStorage.update(login, person);
+        User user = userStorage.get(login);
+        user.setRights(right);
+        userStorage.update(login, user);
         ResponseEntity response = new ResponseEntity<>(HttpStatus.OK);
         logger.info("Rights changed");
         logger.debug("changeRights() returned " + response);

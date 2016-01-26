@@ -2,10 +2,10 @@ package com.pzpwr.core.endpoint;
 
 import com.pzpwr.core.exception.StorageException;
 import com.pzpwr.core.storage.PatientRegistrationStorage;
-import com.pzpwr.core.storage.PersonStorage;
+import com.pzpwr.core.storage.UserStorage;
 import com.pzpwr.core.storage.RoomReservationStorage;
 import com.pzpwr.core.storage.WaitingRoomStorage;
-import com.pzpwr.core.type.Person;
+import com.pzpwr.core.type.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminEndpoint {
 
     @Autowired
-    private PersonStorage personStorage;
+    private UserStorage userStorage;
 
     @Autowired
     private RoomReservationStorage roomReservationStorage;
@@ -41,15 +41,15 @@ public class AdminEndpoint {
 
     @RequestMapping(value = "get_persons", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<List<Person>> getAllPersons() {
+    public ResponseEntity<List<User>> getAllPersons() {
         logger.debug("getAllPersons() called");
-        List<Person> allPersonsList = personStorage.getAllObjects();
-        ResponseEntity<List<Person>> response = new ResponseEntity<>(allPersonsList, HttpStatus.OK);
+        List<User> allPersonsList = userStorage.getAllObjects();
+        ResponseEntity<List<User>> response = new ResponseEntity<>(allPersonsList, HttpStatus.OK);
         logger.info("LIST OF ALL PERSONS: ");
-        for (Person person : allPersonsList) {
-            logger.info(person.getLogin() + " | " + person.getPassword() + " | " + person.getName() + " | " +
-                    person.getSurname() + " | " + person.getJob() + " | " + person.getRights() + " | " +
-                    person.getMedicalDocumentation());
+        for (User user : allPersonsList) {
+            logger.info(user.getLogin() + " | " + user.getPassword() + " | " + user.getName() + " | " +
+                    user.getSurname() + " | " + user.getJob() + " | " + user.getRights() + " | " +
+                    user.getMedicalDocumentation());
         }
         logger.debug("getAllPersons() returned " + response);
         return response;

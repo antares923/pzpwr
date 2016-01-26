@@ -1,8 +1,8 @@
 package com.pzpwr.core.endpoint;
 
 import com.pzpwr.core.exception.StorageException;
-import com.pzpwr.core.storage.PersonStorage;
-import com.pzpwr.core.type.Person;
+import com.pzpwr.core.storage.UserStorage;
+import com.pzpwr.core.type.User;
 import com.pzpwr.core.type.Visit;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetDocumentationEndpoint {
 
     @Autowired
-    private PersonStorage personStorage;
+    private UserStorage userStorage;
 
     private Logger logger = Logger.getLogger("GetDocumentationEndpoint");
 
@@ -34,8 +34,8 @@ public class GetDocumentationEndpoint {
             throws StorageException {
         logger.debug("getDocumentation(login: " + login + ") called");
         logger.info("Trying to get documentation of user (" + login + ")");
-        Person person = personStorage.get(login);
-        List<Visit> documentation = person.getMedicalDocumentation();
+        User user = userStorage.get(login);
+        List<Visit> documentation = user.getMedicalDocumentation();
         ResponseEntity<List<Visit>> response = new ResponseEntity<>(documentation, HttpStatus.OK);
         logger.info("Documentation for patient (" + login + ")[" + documentation.size() + "] returned");
         logger.debug("getDocumentation() returned " + response);

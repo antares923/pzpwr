@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 class PersonSpecification extends Specification {
 
-    def uut = new Person()
+    def uut = new User()
 
     def setup() {
         uut.setLogin(LOGIN)

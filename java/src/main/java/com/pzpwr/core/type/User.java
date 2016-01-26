@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Person extends Type {
+public class User extends Type {
 
     private int id;
     private String login;
@@ -90,7 +90,7 @@ public class Person extends Type {
 
     @Override
     public boolean equals(Object o) {
-        Person other = (Person) o;
+        User other = (User) o;
         return o != null &&
                 Objects.equals(this.getLogin(), other.getLogin()) &&
                 Objects.equals(this.getPassword(), other.getPassword()) &&
@@ -102,8 +102,8 @@ public class Person extends Type {
     }
 
     @Override
-    public Person clone() {
-        Person clone = new Person();
+    public User clone() {
+        User clone = new User();
         clone.setLogin(this.login);
         clone.setPassword(this.password);
         clone.setName(this.name);
