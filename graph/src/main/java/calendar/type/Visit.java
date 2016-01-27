@@ -82,4 +82,8 @@ public class Visit extends Type {
         clone.setType(this.getType());
         return clone;
     }
+
+    public String toString() {
+
+    }
 }

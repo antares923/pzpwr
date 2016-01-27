@@ -1,13 +1,13 @@
 package calendar.storage;
 
 import calendar.type.Visit;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class Storage {
+
+    private boolean changed = false;
 
     private List<Visit> visitList = new ArrayList<>();
 
@@ -17,5 +17,17 @@ public class Storage {
 
     public List<Visit> getVisitList() {
         return visitList;
+    }
+
+    public boolean hasChanged() {
+        return changed;
+    }
+
+    public void changed() {
+        changed = true;
+    }
+
+    public void changeDone() {
+        changed = false;
     }
 }

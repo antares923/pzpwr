@@ -1,12 +1,18 @@
 package calendar;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import calendar.connector.Connector;
+import calendar.gui.GUI;
+import calendar.storage.Storage;
 
-@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+
+        Storage storage = new Storage();
+
+        Connector connector = new Connector();
+        GUI gui = new GUI(connector);
+        gui.createAndShowGUI(storage);
+
     }
 }
