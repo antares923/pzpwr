@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserStorageImpl extends BaseStorage<String, User> implements UserStorage {
 
-    Logger logger = Logger.getLogger("PersonStorge");
+    Logger logger = Logger.getLogger("UserStorage");
 
     @Override
     public void add(User user) throws StorageException {

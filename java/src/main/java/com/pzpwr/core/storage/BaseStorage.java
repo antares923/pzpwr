@@ -54,7 +54,7 @@ public abstract class BaseStorage<KEY_TYPE, OBJECT_TYPE extends Type> extends Ob
     @SuppressWarnings("unchecked")
     public OBJECT_TYPE get(KEY_TYPE id) throws StorageException {
         logger.debug("get(id: " + id + ") called");
-        OBJECT_TYPE object = (isIdValid(id) ? map.get(id) : null);
+        OBJECT_TYPE object =  map.get(id);
 
         if (object == null) {
             throw new StorageException(id.toString(), "Object (" + id + ") not found in storage");
