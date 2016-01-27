@@ -18,12 +18,11 @@ public class GetPassword {
     @ResponseBody
     public ResponseEntity<String> getPassword(@RequestParam(required = true) String login) throws StorageException {
         try {
-            System.out.println(login);
             User user = userStorage.get(login);
             return new ResponseEntity<>(user.getPassword(), HttpStatus.OK);
         }catch(StorageException e ) {
             e.printStackTrace();
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
