@@ -1,15 +1,19 @@
 package calendar.connector;
 
 import calendar.type.Visit;
-import com.google.gson.Gson;
+import com.google.gson.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,9 +43,17 @@ public class Connector {
                 builder.append(output);
             }
 
-            Gson gson = new Gson();
+            //System.out.println(builder.toString());
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+                @Override
+                public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                    System.out.println(json.getAsJsonPrimitive());
+                    Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
+                    return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).withNano(0);
+                }
+            }).create();
             Visit[] visits = gson.fromJson(builder.toString(), Visit[].class);
-
+            //System.out.println(visits);
 
             conn.disconnect();
             return Arrays.asList(visits);

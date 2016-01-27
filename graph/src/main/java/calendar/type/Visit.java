@@ -78,12 +78,14 @@ public class Visit extends Type {
         clone.setRoomNumber(this.getRoomNumber());
         clone.setDoctorIdList(this.getDoctorIdList());
         clone.setDateTime(this.getDateTime());
+        clone.setDurationInMinutes(this.getDurationInMinutes());
         clone.setPatientLogin(this.getPatientLogin());
         clone.setType(this.getType());
         return clone;
     }
 
     public String toString() {
-
+        return id + ": room (" + roomNumber + "), doctorst: " + doctorIdList + ". Date: " + dateTime + " with duration " +
+                durationInMinutes + ". Patient: " + patientLogin + ", visit type " + type;
     }
 }
