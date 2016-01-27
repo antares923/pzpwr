@@ -9,10 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class MyFrame extends JFrame {
 
@@ -39,9 +37,35 @@ public class MyFrame extends JFrame {
             setLayout(new GridLayout(15, 16));
             setBounds(0, 0, 800, 800);
 
-            add(new JLabel(""));
+            LocalDateTime now = LocalDateTime.now();
+
+            add(new JLabel("x"));
             for (int i = 0; i < 15; i++) {
-                add(new JLabel(10 * i + ""));
+                LocalDateTime next = now.plusMinutes(i * STEP);
+                int hour = next.getHour();
+                int minute = next.getMinute();
+                int second = next.getSecond();
+
+                String label = "";
+
+                if (hour < 10) {
+                    label += "0" + hour + ":";
+                } else {
+                    label += hour + ":";
+                }
+
+                if (minute < 10) {
+                    label += "0" + minute + ":";
+                } else {
+                    label += minute + ":";
+                }
+
+                if (second < 10) {
+                    label += "0" + second;
+                } else {
+                    label += second;
+                }
+                add(new JLabel(label));
             }
             buttons = new JButton[14][15];
 
@@ -53,7 +77,18 @@ public class MyFrame extends JFrame {
                     buttons[i][j].setBounds(i * WIDTH, j * HEIGHT, WIDTH, HEIGHT);
                     buttons[i][j].addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-
+                            JButton button = (JButton) e.getSource();
+                            if (!Objects.equals(button.getText(), "")) {
+                                Visit visit = null;
+                                for (Visit v : visitList) {
+                                    if (v.getId() == Integer.parseInt(button.getText())) {
+                                        visit = v;
+                                        break;
+                                    }
+                                }
+                                VisitFrame vframe = new VisitFrame(visit);
+                                vframe.setVisible(true);
+                            }
                         }
                     });
                     add(buttons[i][j]);
