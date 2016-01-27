@@ -1,6 +1,7 @@
 package com.pzpwr.core.endpoint;
 
 import com.pzpwr.core.exception.StorageException;
+import com.pzpwr.core.scheduler.Scheduler;
 import com.pzpwr.core.storage.PatientRegistrationStorage;
 import com.pzpwr.core.storage.WaitingRoomStorage;
 import com.pzpwr.core.type.PatientQuery;
@@ -30,6 +31,9 @@ public class ReceptionEndpoint {
     @Autowired
     private PatientRegistrationStorage patientRegistrationStorage;
 
+    @Autowired
+    private Scheduler scheduler;
+
     private Logger logger = Logger.getLogger("ReceptionEndpoint");
 
     @RequestMapping(value = "reception/patients", method = RequestMethod.GET)
@@ -52,6 +56,12 @@ public class ReceptionEndpoint {
         logger.debug("patientAcceptation(patientRegistrationList: " + patientRegistrationList + ") called");
         logger.info("Trying to accept list of patients: " + patientRegistrationList);
         patientRegistrationStorage.add(patientRegistrationList);
+        try {
+            scheduler.schedule();
+        } catch (Exception e) {
+            logger.info("somethings going wrong: " + e.getMessage());
+            e.printStackTrace();
+        }
         ResponseEntity response = new ResponseEntity<>(HttpStatus.OK);
         logger.info("List of (" + patientRegistrationList.size() + ") added");
         logger.debug("patientAcceptation() returned " + response);

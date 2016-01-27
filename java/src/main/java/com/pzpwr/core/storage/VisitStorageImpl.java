@@ -60,4 +60,8 @@ public class VisitStorageImpl extends BaseStorage<Integer, Visit> implements Vis
                 visit -> visit.getType() == visitType
         );
     }
+
+    public void removeAll() {
+        map.clear();
+    }
 }

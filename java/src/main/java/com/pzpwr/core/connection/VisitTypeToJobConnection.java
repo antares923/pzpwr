@@ -2,9 +2,12 @@ package com.pzpwr.core.connection;
 
 import com.pzpwr.core.appenum.JobEnum;
 import com.pzpwr.core.appenum.VisitTypeEnum;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 @Component
 public class VisitTypeToJobConnection {

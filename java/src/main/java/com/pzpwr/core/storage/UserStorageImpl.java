@@ -28,6 +28,11 @@ public class UserStorageImpl extends BaseStorage<String, User> implements UserSt
         super.update(personLogin, newUserData);
     }
 
+    public User getById(int id) throws StorageException {
+        User user = getListByFilter((u) -> u.getId() == id).get(0);
+        return user;
+    }
+
     public List<User> filterByJob(JobEnum job) {
         logger.debug("filterByJob(job: " + job + ") called");
         List<User> users = getListByFilter((person) -> person.getJob().equals(job));

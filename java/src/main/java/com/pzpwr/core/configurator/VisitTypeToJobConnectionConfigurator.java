@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +21,7 @@ import java.util.StringTokenizer;
 import javax.annotation.PostConstruct;
 
 @Configuration
+@PropertySource("application.properties")
 public class VisitTypeToJobConnectionConfigurator {
 
     @Value("${visit_to_job_connection_file_path}")

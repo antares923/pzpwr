@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -27,12 +29,14 @@ public class AddUserEndpoint {
 
     @RequestMapping(value = "admin/add_user", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity addUser(@RequestBody(required = true) User user) throws StorageException {
-        logger.debug("addUser(user: " + user + ") called");
-        logger.info("Trying to add user (" + user + ")");
-        userStorage.add(user);
+    public ResponseEntity addUser(@RequestBody(required = true) List<User> users) throws StorageException {
+        logger.debug("addUser(user: " + users + ") called");
+        logger.info("Trying to add users (" + users + ")");
+        for (User user : users) {
+            userStorage.add(user);
+        }
         ResponseEntity response = new ResponseEntity<>(HttpStatus.OK);
-        logger.info("User: " + user + " added");
+        logger.info("User: " + users + " added");
         logger.debug("addUser() returned " + response);
         return response;
     }

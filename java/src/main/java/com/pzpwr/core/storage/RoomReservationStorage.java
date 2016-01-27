@@ -18,4 +18,6 @@ public interface RoomReservationStorage {
     void setAvailableRoomNumbers(List<Integer> availableRoomNumbers);
 
     int getFreeRoomAtTime(LocalDateTime startTime, LocalDateTime endTime) throws NoFreeRoomException;
+
+    void removeAll();
 }

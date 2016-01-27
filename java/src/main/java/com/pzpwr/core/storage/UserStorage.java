@@ -17,6 +17,8 @@ public interface UserStorage {
 
     User get(String personLogin) throws StorageException;
 
+    User getById(int id) throws StorageException;
+
     List<User> filterByJob(JobEnum job);
 
     List<User> filterByRights(RightEnum right);

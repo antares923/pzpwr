@@ -24,4 +24,6 @@ public interface VisitStorage {
     List<Visit> filterByTime(LocalDateTime startTime, LocalDateTime endTime);
 
     List<Visit> filterByType(VisitTypeEnum visitType);
+
+    void removeAll();
 }

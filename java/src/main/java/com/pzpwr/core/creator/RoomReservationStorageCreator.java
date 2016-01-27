@@ -20,7 +20,7 @@ import java.util.List;
 @PropertySource("application.properties")
 public class RoomReservationStorageCreator {
 
-    @Value("${available_rooms_file_path}}")
+    @Value("${available_rooms_file_path}")
     private String availableRoomsFilePath;
 
     private Logger logger = Logger.getLogger("RoomReservationStorageCreator");

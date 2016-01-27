@@ -59,7 +59,7 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
     public int getFreeRoomAtTime(LocalDateTime startTime, LocalDateTime endTime) throws NoFreeRoomException {
         logger.debug("getFreeRoomAtTime(startTime: " + startTime + ", endTime: " + endTime + ") called");
         for (int roomNumber : availableRoomNumbers) {
-            logger.debug("Checking room " + roomNumber);
+            logger.info("Checking room " + roomNumber);
             if (checkRoomAvailability(roomNumber, startTime, endTime)) {
                 logger.debug("getFreeRoomAtTime() returned " + roomNumber);
                 return roomNumber;
@@ -70,27 +70,19 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
     }
 
     private boolean checkRoomAvailability(int roomNumber, LocalDateTime startTime, LocalDateTime endTime) {
-        logger.debug("checkRoomAvailability(roomNumber: " + roomNumber + ", startTime: " + startTime + ", endTime: "
+        logger.info("checkRoomAvailability(roomNumber: " + roomNumber + ", startTime: " + startTime + ", endTime: "
                 + endTime + ") called");
         List<RoomReservation> roomReservationList = map.get(roomNumber);
         if (roomReservationList == null || roomReservationList.isEmpty()) {
             logger.debug("checkRoomAvailability() returned true - empty list");
             return true;
         }
-        logger.debug("reservation list: " + map);
         for (RoomReservation roomReservation : roomReservationList) {
-            logger.debug("Checked room: " + roomReservation.getRoomNumber());
-            logger.debug(" Times: ");
-            logger.debug("  " + roomReservation.getReservationStartTime());
-            logger.debug("  " + roomReservation.getReservationEndTime());
             if ((startTime.isAfter(roomReservation.getReservationStartTime()) && startTime.isBefore(roomReservation.getReservationEndTime()) ||
                     startTime.isEqual(roomReservation.getReservationStartTime())) ||
                     (endTime.isAfter(roomReservation.getReservationStartTime()) && endTime.isBefore(roomReservation.getReservationEndTime())) ||
                     endTime.isEqual(roomReservation.getReservationEndTime())) {
-                logger.debug("checkRoomAvailability() returned false - room reserved");
-                logger.debug("Room reservation times: ");
-                logger.debug("  " + roomReservation.getReservationStartTime());
-                logger.debug("  " + roomReservation.getReservationEndTime());
+                logger.debug("checkRoomAvailability() returned false");
                 return false;
             }
         }
@@ -100,5 +92,9 @@ public class RoomReservationStorageImpl implements RoomReservationStorage {
 
     public void setAvailableRoomNumbers(List<Integer> availableRoomNumbers) {
         this.availableRoomNumbers = availableRoomNumbers;
+    }
+
+    public void removeAll() {
+        map.clear();
     }
 }
